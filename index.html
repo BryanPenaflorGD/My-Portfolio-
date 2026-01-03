@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bryan | Game Dev Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="grid-overlay"></div>
+    <nav>
+      <div class="logo">BRYAN<span>.</span></div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#portfolio">Games</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <header id="hero">
+      <div class="hero-content">
+        <div class="badge">Available for Hire</div>
+        <h1>I Make Ideas Come to Life!</h1>
+        <p>Indie Game Developer | Unity Specialist | Level Designer</p>
+        <div class="hero-btns">
+          <a href="#portfolio" class="btn">View My Games</a>
+          <a href="#contact" class="btn secondary">Get In Touch</a>
+        </div>
+      </div>
+    </header>
+<section id="featured">
+  <div class="section-title">
+    <h2>Latest In Progress</h2>
+    <div class="underline"></div>
+  </div>
+
+  <div class="featured-container">
+    <div class="featured-card">
+      <div class="featured-image">
+        <img src="images/Screenshot 2026-01-03 115924.png" alt="Featured Project">
+        <div class="status-tag">In Development</div>
+      </div>
+      <div class="featured-info">
+        <h3>LISTO</h3>
+        <p>Currently building a 3D Typhoon Simulation serious game for disaster awareness </p>
+        <div class="tech-stack">Unity 3D • C# • Maya 3D </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <section id="portfolio">
+      <div class="section-title">
+        <h2>Selected Works</h2>
+        <div class="underline"></div>
+      </div>
+
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="rpg">Simulation</button>
+        <button class="filter-btn" data-filter="action">Stealth</button>
+        <button class="filter-btn" data-filter="web">2D</button>
+      </div>
+
+      <div class="game-grid">
+        <div class="game-card" data-category="rpg">
+          <div class="card-image">
+            <img src="images/Screenshot 2026-01-03 115924.png" alt="LISTO Game" />
+          </div>
+          <div class="card-content">
+            <h3>LISTO</h3>
+            <p class="tech-stack">Unity 3D • C# • 3D Models</p>
+            <p>A First-person 3D Simulation Thriller about Typhoons in Camarines Sur.</p>
+            <a href="#" class="play-link">Play Demo <i class="fas fa-gamepad"></i></a>
+          </div>
+        </div>
+
+        <div class="game-card" data-category="action">
+          <div class="card-image">
+            <img src="images/game icon.png" alt="ShadowStep Game" />
+          </div>
+          <div class="card-content">
+            <h3>ShadowStep</h3>
+            <p class="tech-stack">Unity 3D • Maya</p>
+            <p>3D Stealth and Puzzle-solving mechanics with dynamic lighting.</p>
+            <a href="https://bryanpgamedev.itch.io/shadowstep" class="play-link">Play Game <i class="fas fa-gamepad"></i></a>
+          </div>
+        </div>
+        
+        <div class="game-card" data-category="action">
+          <div class="card-image">
+            <img src="images/IMG_2779.PNG" alt="Siklab Game" />
+          </div>
+          <div class="card-content">
+            <h3>Siklab</h3>
+            <p class="tech-stack">Unity 3D • Maya</p>
+            <p>2D Side-scroller roguelike stealth game set in the world of Ibalon</p>
+            <a href="https://bryanpgamedev.itch.io/siklab" class="play-link">Play Game <i class="fas fa-gamepad"></i></a>
+          </div>
+        </div>
+
+        <div class="game-card" data-category="web">
+          <div class="card-image">
+            <img src="images/480698202_1145424950371042_2388871479277668898_n.jpg" alt="Never Blink Game" />
+          </div>
+          <div class="card-content">
+            <h3>Never Blink</h3>
+            <p class="tech-stack">Topdown 2D • Horror</p>
+            <p>A Topdown 2D Horror puzzle game built for browser play.</p>
+            <a href="#" class="play-link">Play Game <i class="fas fa-gamepad"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <section id="about">
+      <div class="about-container">
+        <div class="about-text">
+          <h2>About Me</h2>
+          <p>
+            I’m a game developer specialized in Unity and C#, passionate about building immersive gameplay systems and mechanics-driven experiences.
+          </p>
+
+          <h3>Technical Skills</h3>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <div class="skill-info"><span>Unity</span><span>60%</span></div>
+              <div class="progress-bar"><div class="progress" style="width: 60%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>C#</span><span>50%</span></div>
+              <div class="progress-bar"><div class="progress" style="width: 50%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>3D Modeling (Maya)</span><span>50%</span></div>
+              <div class="progress-bar"><div class="progress" style="width: 50%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>Git / GitHub</span><span>60%</span></div>
+              <div class="progress-bar"><div class="progress" style="width: 60%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <h2>Let's Create Together!</h2>
+      <div class="socials">
+        <a href="https://x.com/PeaflorBryan" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/samuel-bryan-peñaflor-1550b3205" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://bryanpgamedev.itch.io/" target="_blank"><i class="fab fa-itch-io"></i></a>
+        <a href="https://github.com/BryanPenaflorGD" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+      <p>&copy; 2025 Samuel Bryan I. Peñaflor. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

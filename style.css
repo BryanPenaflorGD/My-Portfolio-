@@ -1,0 +1,478 @@
+/* --- Global Reset & Variables --- */
+:root {
+  --bg-color: #0a0a0a;
+  --card-bg: #161616;
+  --text-color: #e0e0e0;
+  --accent-color: #2566f1; /* Main Blue */
+  --accent-glow: rgba(37, 102, 241, 0.5);
+  --font-main: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+#about {
+  position: relative;
+  padding: 8rem 5%;
+  background: var(--bg-color); /* Matches the rest of the site */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#about::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Slightly lighter to see the workspace more */
+  backdrop-filter: blur(5px);    /* Reduced blur for better visibility */
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 1;
+}
+
+.about-text {
+  max-width: 800px;
+  margin: 0 auto; /* Centers the paragraph block itself */
+  text-align: center;
+}
+
+.about-container {
+  position: relative;
+  z-index: 2; 
+  max-width: 900px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+.logo span {
+  color: var(--accent-color);
+}
+
+/* --- Navigation (Glassmorphism) --- */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(15px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a, .nav-links a:visited {
+  color: #ffffff !important; /* Force white color even if visited */
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--accent-color) !important;
+}
+
+.nav-links a {
+  color: var(--text-color) !important;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* --- Hero Section & Scanlines --- */
+header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  /* Add these lines to move your photo to the top */
+  background-image: url('images/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; 
+  z-index: 5;
+  overflow: hidden;
+}
+
+/* CRT Scanline Effect */
+header::before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+              linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 3px, 3px 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Adjust for text readability */
+  backdrop-filter: blur(2px);    /* Optional: subtle blur for the top */
+  -webkit-backdrop-filter: blur(4px);
+  z-index: -1; /* Sits behind text but in front of photo */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 11; /* Ensure text is above all background effects */
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(37, 102, 241, 0.1);
+  color: var(--accent-color);
+  padding: 5px 15px;
+  border-radius: 20px;
+  border: 1px solid var(--accent-color);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  margin-bottom: 1rem;
+  font-weight: 900;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Fix for the bunched-up buttons */
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: var(--text-color);
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filter-btn.active {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.btn {
+  padding: 0.8rem 2rem;
+  background: var(--accent-color);
+  border: 2px solid var(--accent-color);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--accent-color);
+}
+
+.btn:hover {
+  box-shadow: 0 0 20px var(--accent-glow);
+  transform: translateY(-3px);
+}
+
+/* --- Portfolio Grid --- */
+#portfolio {
+  padding: 6rem 5%;
+}
+
+/* Portfolio Section Fixes */
+.game-grid {
+  display: grid;
+  /* Use fixed widths or max-widths to prevent stretching */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 350px)); 
+  gap: 2.5rem;
+  justify-content: center; /* This keeps them centered when filtered */
+  align-items: start;
+  width: 100%;
+}
+
+.game-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #333;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1; /* Normal state */
+}
+
+.game-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  z-index: 10; /* Pops ABOVE the other cards so it doesn't overlap */
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.card-image {
+  width: 100%;
+  height: 200px; /* Fixed height for all images */
+  background: #222;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps images from stretching */
+}
+
+.game-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* --- Featured Section --- */
+#featured {
+  padding: 5rem 5%;
+  background: #0f0f0f;
+  text-align: center; /* Centers the title and text */
+}
+
+.featured-container {
+  display: flex;
+  justify-content: center; /* Centers the card horizontally */
+  margin-top: 3rem;
+}
+
+.featured-card {
+  max-width: 900px; /* Limits width for a premium look */
+  background: var(--card-bg);
+  border-radius: 15px;
+  border: 1px solid var(--accent-color);
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(37, 102, 241, 0.15);
+}
+
+.featured-image {
+  position: relative;
+  width: 100%;
+  height: 400px;
+}
+
+.featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.status-tag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--accent-color);
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.featured-info {
+  padding: 2.5rem;
+}
+
+.featured-info h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.featured-info p {
+  color: #aaa;
+  max-width: 700px;
+  margin: 0 auto 1.5rem auto; /* Centers the paragraph text */
+}
+
+/* --- Skills Section --- */
+/* Skills Section Polish */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 3rem auto 0 auto; /* Centers the grid on the page */
+  justify-content: center; /* Centers the items inside the grid */
+}
+
+.skill-item {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #333;
+  border-radius: 10px;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-color), #00d2ff);
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+footer {
+  text-align: center; /* Centers "Let's Create Together" and Copyright */
+  padding: 4rem 5%;
+  border-top: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers everything inside the footer */
+}
+
+.socials {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+  gap: 30px; /* Wider gap looks more premium */
+  margin: 2rem 0;
+}
+
+.socials a {
+  font-size: 2rem;
+  color: var(--accent-color);
+  transition: 0.3s;
+}
+
+.socials a:hover {
+  filter: drop-shadow(0 0 10px var(--accent-color));
+  transform: translateY(-5px);
+}
+
+.grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 1; /* Move this to a high number */
+}
+
+.game-card, .skill-item, .featured-card {
+  background: rgba(22, 22, 22, 0.7); /* See-through dark */
+  backdrop-filter: blur(10px); /* Blurs the grid behind it */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
+
+section {
+  position: relative;
+  clear: both;
+}
+
+/* Fix for Play Buttons/Links */
+.play-link, .play-link:visited {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--accent-color) !important; /* Forces your theme blue instead of purple */
+  text-decoration: none;
+  font-family: var(--font-main); /* Forces your professional font */
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.play-link i {
+  margin-left: 8px; /* Adds space for the gamepad icon */
+  transition: transform 0.3s ease;
+}
+
+.play-link:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.play-link:hover i {
+  transform: translateX(5px); /* Makes the icon nudge right on hover */
+}
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+  .hero-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+}
