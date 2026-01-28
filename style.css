@@ -1,4 +1,6 @@
-/* --- Global Reset & Variables --- */
+/* ==========================================================================
+   1. VARIABLES & RESET
+   ========================================================================== */
 :root {
   --bg-color: #0a0a0a;
   --card-bg: #161616;
@@ -7,47 +9,12 @@
   --accent-glow: rgba(37, 102, 241, 0.5);
   --font-main: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
-#about {
-  position: relative;
-  padding: 8rem 5%;
-  background: var(--bg-color); /* Matches the rest of the site */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-#about::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6); /* Slightly lighter to see the workspace more */
-  backdrop-filter: blur(5px);    /* Reduced blur for better visibility */
-  -webkit-backdrop-filter: blur(5px);
-  z-index: 1;
-}
-
-.about-text {
-  max-width: 800px;
-  margin: 0 auto; /* Centers the paragraph block itself */
-  text-align: center;
-}
-
-.about-container {
-  position: relative;
-  z-index: 2; 
-  max-width: 900px;
-}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 
 html {
   scroll-behavior: smooth;
@@ -61,8 +28,16 @@ body {
   overflow-x: hidden;
 }
 
+section {
+  position: relative;
+  clear: both;
+}
 
+/* ==========================================================================
+   2. REUSABLE COMPONENTS
+   ========================================================================== */
 
+/* Logo */
 .logo {
   font-size: 1.5rem;
   font-weight: 800;
@@ -72,7 +47,73 @@ body {
   color: var(--accent-color);
 }
 
-/* --- Navigation (Glassmorphism) --- */
+/* Buttons */
+.btn {
+  padding: 0.8rem 2rem;
+  background: var(--accent-color);
+  border: 2px solid var(--accent-color);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--accent-color);
+}
+
+.btn:hover {
+  box-shadow: 0 0 20px var(--accent-glow);
+  transform: translateY(-3px);
+}
+
+/* Play Links (Cards) */
+.play-link, .play-link:visited {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--accent-color) !important;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.play-link i {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.play-link:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.play-link:hover i {
+  transform: translateX(5px);
+}
+
+/* Grid Overlay */
+.grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   3. NAVIGATION
+   ========================================================================== */
 nav {
   display: flex;
   justify-content: space-between;
@@ -92,8 +133,8 @@ nav {
   list-style: none;
 }
 
-.nav-links a, .nav-links a:visited {
-  color: #ffffff !important; /* Force white color even if visited */
+.nav-links a {
+  color: var(--text-color) !important;
   text-decoration: none;
   font-weight: 500;
   transition: 0.3s;
@@ -103,13 +144,9 @@ nav {
   color: var(--accent-color) !important;
 }
 
-.nav-links a {
-  color: var(--text-color) !important;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-/* --- Hero Section & Scanlines --- */
+/* ==========================================================================
+   4. HERO SECTION
+   ========================================================================== */
 header {
   min-height: 100vh;
   display: flex;
@@ -118,7 +155,6 @@ header {
   justify-content: center;
   text-align: center;
   position: relative;
-  /* Add these lines to move your photo to the top */
   background-image: url('images/bg.png');
   background-size: cover;
   background-position: center;
@@ -149,15 +185,15 @@ header::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6); /* Adjust for text readability */
-  backdrop-filter: blur(2px);    /* Optional: subtle blur for the top */
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(4px);
-  z-index: -1; /* Sits behind text but in front of photo */
+  z-index: -1;
 }
 
 .hero-content {
   position: relative;
-  z-index: 11; /* Ensure text is above all background effects */
+  z-index: 11;
 }
 
 .badge {
@@ -174,7 +210,7 @@ header::after {
 }
 
 .hero-content h1 {
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-size: clamp(5rem, 8vw, 4.5rem);
   margin-bottom: 1rem;
   font-weight: 900;
 }
@@ -186,124 +222,30 @@ header::after {
   margin-top: 2rem;
 }
 
-/* Fix for the bunched-up buttons */
-.filter-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  color: var(--text-color);
-  padding: 8px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.filter-btn.active {
-  background: var(--accent-color);
-  color: white;
-  border-color: var(--accent-color);
-  box-shadow: 0 0 10px var(--accent-glow);
-}
-
-.btn {
-  padding: 0.8rem 2rem;
-  background: var(--accent-color);
-  border: 2px solid var(--accent-color);
-  color: #fff;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.btn.secondary {
-  background: transparent;
-  color: var(--accent-color);
-}
-
-.btn:hover {
-  box-shadow: 0 0 20px var(--accent-glow);
-  transform: translateY(-3px);
-}
-
-/* --- Portfolio Grid --- */
-#portfolio {
-  padding: 6rem 5%;
-}
-
-/* Portfolio Section Fixes */
-.game-grid {
-  display: grid;
-  /* Use fixed widths or max-widths to prevent stretching */
-  grid-template-columns: repeat(auto-fill, minmax(300px, 350px)); 
-  gap: 2.5rem;
-  justify-content: center; /* This keeps them centered when filtered */
-  align-items: start;
-  width: 100%;
-}
-
-.game-card {
-  background: var(--card-bg);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #333;
-  transition: all 0.4s ease;
-  position: relative;
-  z-index: 1; /* Normal state */
-}
-
-.game-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  z-index: 10; /* Pops ABOVE the other cards so it doesn't overlap */
-  border-color: var(--accent-color);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.card-image {
-  width: 100%;
-  height: 200px; /* Fixed height for all images */
-  background: #222;
-}
-
-.card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Keeps images from stretching */
-}
-
-.game-card:hover {
-  transform: translateY(-10px);
-  border-color: var(--accent-color);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-/* --- Featured Section --- */
+/* ==========================================================================
+   5. FEATURED WORK
+   ========================================================================== */
 #featured {
   padding: 5rem 5%;
   background: #0f0f0f;
-  text-align: center; /* Centers the title and text */
+  text-align: center;
 }
 
 .featured-container {
   display: flex;
-  justify-content: center; /* Centers the card horizontally */
+  justify-content: center;
   margin-top: 3rem;
 }
 
 .featured-card {
-  max-width: 900px; /* Limits width for a premium look */
+  max-width: 900px;
   background: var(--card-bg);
   border-radius: 15px;
   border: 1px solid var(--accent-color);
   overflow: hidden;
   box-shadow: 0 0 30px rgba(37, 102, 241, 0.15);
+  background: rgba(22, 22, 22, 0.7);
+  backdrop-filter: blur(10px);
 }
 
 .featured-image {
@@ -335,34 +277,123 @@ header::after {
   padding: 2.5rem;
 }
 
-.featured-info h3 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+/* ==========================================================================
+   6. PORTFOLIO & FILTERING
+   ========================================================================== */
+#portfolio {
+  padding: 6rem 5%;
 }
 
-.featured-info p {
-  color: #aaa;
-  max-width: 700px;
-  margin: 0 auto 1.5rem auto; /* Centers the paragraph text */
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
 }
 
-/* --- Skills Section --- */
-/* Skills Section Polish */
+.filter-btn {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: var(--text-color);
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filter-btn.active {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 350px)); 
+  gap: 2.5rem;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+}
+
+.game-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.game-card:hover {
+  transform: translateY(-10px) scale(1.2);
+  z-index: 10;
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  background: #222;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   7. ABOUT ME & SKILLS
+   ========================================================================== */
+#about {
+  position: relative;
+  padding: 8rem 5%;
+  background: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#about::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 1;
+}
+
+.about-container {
+  position: relative;
+  z-index: 2; 
+  max-width: 900px;
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   width: 100%;
   max-width: 1000px;
-  margin: 3rem auto 0 auto; /* Centers the grid on the page */
-  justify-content: center; /* Centers the items inside the grid */
+  margin: 3rem auto 0 auto;
+  justify-content: center;
 }
 
 .skill-item {
   background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
   padding: 1.2rem;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .skill-info {
@@ -387,20 +418,23 @@ header::after {
   box-shadow: 0 0 10px var(--accent-glow);
 }
 
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
 footer {
-  text-align: center; /* Centers "Let's Create Together" and Copyright */
+  text-align: center;
   padding: 4rem 5%;
   border-top: 1px solid #222;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers everything inside the footer */
+  align-items: center;
 }
 
 .socials {
   display: flex;
-  justify-content: center; /* Center horizontally */
+  justify-content: center;
   align-items: center;
-  gap: 30px; /* Wider gap looks more premium */
+  gap: 30px;
   margin: 2rem 0;
 }
 
@@ -415,67 +449,75 @@ footer {
   transform: translateY(-5px);
 }
 
-.grid-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* ==========================================================================
+   SNAPSHOT GALLERY
+   ========================================================================== */
+#snapshots {
+  padding: 6rem 5%;
+  background: #050505; /* Deep black to make colors pop */
+}
+
+.snapshot-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1300px;
+  margin-top: 3rem;
+}
+
+.snapshot-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(168, 85, 247, 0.2); /* Matching Figma Purple */
+}
+
+.snapshot-item img {
   width: 100%;
   height: 100%;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-  z-index: 1; /* Move this to a high number */
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.game-card, .skill-item, .featured-card {
-  background: rgba(22, 22, 22, 0.7); /* See-through dark */
-  backdrop-filter: blur(10px); /* Blurs the grid behind it */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-}
-
-section {
-  position: relative;
-  clear: both;
-}
-
-/* Fix for Play Buttons/Links */
-.play-link, .play-link:visited {
-  display: inline-block;
-  margin-top: 1.5rem;
-  color: var(--accent-color) !important; /* Forces your theme blue instead of purple */
-  text-decoration: none;
-  font-family: var(--font-main); /* Forces your professional font */
-  font-weight: bold;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-}
-
-.play-link i {
-  margin-left: 8px; /* Adds space for the gamepad icon */
+.snapshot-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  transform: translateY(100%); /* Hidden below */
   transition: transform 0.3s ease;
 }
 
-.play-link:hover {
-  color: #ffffff !important;
-  text-shadow: 0 0 10px var(--accent-glow);
+/* Hover Effects */
+.snapshot-item:hover {
+  transform: scale(1.02);
+  border-color: var(--accent-color);
 }
 
-.play-link:hover i {
-  transform: translateX(5px); /* Makes the icon nudge right on hover */
+.snapshot-item:hover img {
+  transform: scale(1.1);
 }
 
+.snapshot-item:hover .snapshot-overlay {
+  transform: translateY(0); /* Slides up on hover */
+}
 
-
-  /* --- Mobile Responsive Fixes --- */
 @media (max-width: 768px) {
-  /* Fix 1: Navigation */
+  .snapshot-container {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
+}
+
+/* ==========================================================================
+   9. MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 768px) {
   nav {
-    flex-direction: column; /* Stacks logo and links */
+    flex-direction: column;
     padding: 1rem;
     gap: 1rem;
   }
@@ -485,47 +527,41 @@ section {
     font-size: 0.9rem;
   }
 
-  /* Fix 2: Hero Section (The "I Make Ideas" text) */
   .hero-content h1 {
-    font-size: 2.5rem; /* Shrinks the giant text so it doesn't break lines weirdly */
+    font-size: 2.5rem;
     padding: 0 10px;
   }
   
   .hero-btns {
-    flex-direction: column; /* Stacks the blue buttons vertically */
+    flex-direction: column;
     width: 100%;
     padding: 0 20px;
   }
   
   .btn {
-    width: 100%; /* Makes buttons full-width for easy thumb-tapping */
+    width: 100%;
   }
 
-  /* Fix 3: Game Grid (Prevents stretching) */
   .game-grid {
-    grid-template-columns: 1fr; /* Force cards to be one per row on phones */
+    grid-template-columns: 1fr;
     padding: 0 15px;
   }
 
-  /* Fix 4: Featured Card (LISTO section) */
   .featured-card {
     margin: 0 10px;
     flex-direction: column;
   }
   
   .featured-image {
-    height: 250px; /* Limits image height on small screens */
+    height: 250px;
   }
 
-  /* Fix 5: About Me & Skills */
   .skills-grid {
-    grid-template-columns: 1fr; /* Stacks skill bars vertically */
+    grid-template-columns: 1fr;
     padding: 0 20px;
   }
 
-  /* Fix 6: Background Image Visibility */
   header, #about {
-    background-attachment: scroll; /* Parallax "fixed" backgrounds often break on mobile browsers */
+    background-attachment: scroll;
   }
-
 }
