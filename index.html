@@ -23,8 +23,8 @@
       --bg3: #141417;
       --surface: #18181c;
       --surface2: #1f1f24;
-      --accent: #c8f03c;
-      --accent2: #a8d424;
+      --accent: #1ef1f1;
+      --accent2: #17c0f3;
       --accent-dim: rgba(200, 240, 60, 0.12);
       --accent-border: rgba(200, 240, 60, 0.22);
       --text: #edece6;
@@ -848,6 +848,170 @@
       letter-spacing: 0.02em;
     }
 
+    /* Wide item spanning 2 grid columns */
+    .snapshot-wide {
+      grid-column: span 2;
+    }
+
+    /* Video fills its snapshot-item wrapper */
+    .snapshot-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .snapshot-item:hover video {
+      transform: scale(1.04);
+    }
+
+    /* "▶ Gameplay Clip" badge on video items */
+    .snapshot-video-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(8, 8, 9, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: var(--text2);
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      backdrop-filter: blur(10px);
+      pointer-events: none;
+    }
+
+    /* On mobile, wide items go back to 1 column */
+    @media (max-width: 580px) {
+      .snapshot-wide {
+        grid-column: span 1;
+      }
+    }
+
+
+
+    /* ════════════════════════════════════════
+   LIGHTBOX
+════════════════════════════════════════ */
+    .snapshot-item {
+      cursor: zoom-in;
+    }
+
+    /* Expand icon hint on hover */
+    .snapshot-item::after {
+      content: '';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 28px;
+      height: 28px;
+      background: rgba(8, 8, 9, 0.75) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23edece6' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7'/%3E%3C/svg%3E") center/14px no-repeat;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      opacity: 0;
+      transition: opacity 0.25s;
+      backdrop-filter: blur(8px);
+    }
+
+    .snapshot-item:hover::after {
+      opacity: 1;
+    }
+
+    /* Lightbox backdrop */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox-inner {
+      position: relative;
+      max-width: min(92vw, 1100px);
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      transform: scale(0.92);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #lightbox.open .lightbox-inner {
+      transform: scale(1);
+    }
+
+    #lightbox-img {
+      max-width: 100%;
+      max-height: calc(88vh - 70px);
+      object-fit: contain;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border2);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7);
+      display: block;
+    }
+
+    .lightbox-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 16px;
+    }
+
+    #lightbox-caption {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text2);
+      letter-spacing: 0.04em;
+      flex: 1;
+    }
+
+    #lightbox-close {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 9px 18px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      flex-shrink: 0;
+    }
+
+    #lightbox-close:hover {
+      background: var(--surface);
+      border-color: var(--accent-border);
+      transform: scale(1.04);
+    }
+
     /* ════════════════════════════════════════
    ABOUT
 ════════════════════════════════════════ */
@@ -1318,7 +1482,7 @@
       <li><a href="#games-outer" data-section="games-outer">Games</a></li>
       <li><a href="#snapshots" data-section="snapshots">Process</a></li>
       <li><a href="#about" data-section="about">About</a></li>
-      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+      <li><a href="#contact" class="nav-cta">Get in touch</a></li>
     </ul>
     <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1391,7 +1555,7 @@
   <section id="featured">
     <div class="featured-inner">
       <div class="featured-img-wrap reveal">
-        <span class="featured-badge">Capstone Projectt</span>
+        <span class="featured-badge">Capstone Project</span>
         <img src="https://bryanpenaflorgd.github.io/My-Portfolio-/images/Screenshot 2026-01-03 115924.png"
           alt="LISTO — typhoon simulation game screenshot"
           onerror="this.style.background='#252530';this.style.minHeight='260px';this.removeAttribute('src')">
@@ -1509,21 +1673,60 @@
       <h2 class="section-title reveal" style="margin-bottom:0">Behind the Work</h2>
     </div>
     <div class="snapshots-grid">
-      <div class="snapshot-item reveal">
+
+      <!-- Static screenshots -->
+      <div class="snapshot-item reveal" data-caption="Level Layout — Siklab">
         <img src="https://bryanpenaflorgd.github.io/My-Portfolio-/images/Siklab Level Design.png"
           alt="Siklab Level Layout" loading="lazy">
         <div class="snapshot-overlay"><span class="snapshot-caption">Level Layout — Siklab</span></div>
       </div>
-      <div class="snapshot-item reveal">
+      <div class="snapshot-item reveal" data-caption="Dynamic Lighting — ShadowStep">
         <img src="https://bryanpenaflorgd.github.io/My-Portfolio-/images/Shadowstep lighting.png"
           alt="ShadowStep Dynamic Lighting" loading="lazy">
         <div class="snapshot-overlay"><span class="snapshot-caption">Dynamic Lighting — ShadowStep</span></div>
       </div>
-      <div class="snapshot-item reveal">
+      <div class="snapshot-item reveal" data-caption="Environment Design — LISTO">
         <img src="https://bryanpenaflorgd.github.io/My-Portfolio-/images/Listo environment.png" alt="LISTO Environment"
           loading="lazy">
         <div class="snapshot-overlay"><span class="snapshot-caption">Environment Design — LISTO</span></div>
       </div>
+
+      <!-- ───────────────────────────────────────────────
+           VIDEO / GIF CLIPS — Replace src with your MP4 file path.
+           Tip: Convert your gameplay GIFs to MP4 for much smaller file sizes.
+           Example path: src="images/my-gameplay-clip.mp4"
+      ─────────────────────────────────────────────── -->
+
+      <!-- Wide video clip (spans 2 columns) -->
+      <div class="snapshot-item snapshot-wide reveal" data-type="video"
+        data-caption="Simple AI Detection and States — ShadowStep">
+        <video autoplay loop muted playsinline>
+          <source src="videos/Shadowstep AI Detection.mp4" type="video/mp4">
+        </video>
+        <div class="snapshot-video-badge">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+            <path d="M2 1.5l6 3.5-6 3.5z" />
+          </svg>
+          Gameplay Clip
+        </div>
+        <div class="snapshot-overlay"><span class="snapshot-caption">AI Detection and States — ShadowStep</span></div>
+      </div>
+
+      <!-- Regular video clip -->
+      <div class="snapshot-item reveal" data-type="video" data-caption="Weather System and Flood Mechanic — LISTO">
+        <video autoplay loop muted playsinline>
+          <source src="videos/Listo Gameplay.mp4" type="video/mp4">
+        </video>
+        <div class="snapshot-video-badge">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+            <path d="M2 1.5l6 3.5-6 3.5z" />
+          </svg>
+          Gameplay Clip
+        </div>
+        <div class="snapshot-overlay"><span class="snapshot-caption">Weather System and Flood Mechanic — LISTO</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1610,7 +1813,7 @@
         </div>
         <div class="about-card">
           <div class="about-card-label">Availability</div>
-          <div class="about-card-value open">In an Internship</div>
+          <div class="about-card-value open">Completing Internship by May 2026</div>
         </div>
         <div class="about-card">
           <div class="about-card-label">Focus areas</div>
@@ -1618,8 +1821,10 @@
             Prototyping</div>
         </div>
         <div class="looking-card">
-          <div class="looking-title">What I'm Looking For</div>
-          <p class="looking-desc">A spot at a studio where I can contribute as a junior developer, deepen my skills in
+          <div class="looking-title">What I Seek to Achieve</div>
+          <p class="looking-desc">A spot at a game studio or company where I can contribute as a junior developer,
+            deepen my
+            skills in
             the overall game development pipeline, and work on shippable products that matter.</p>
         </div>
       </div>
@@ -1678,99 +1883,176 @@
         </div>
       </div>
 
-      <script>
-        /* ── Scroll reveal ── */
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  </section>
 
-        document.querySelectorAll('.reveal').forEach((el, i) => {
-          el.style.transitionDelay = (i % 5) * 0.07 + 's';
-          observer.observe(el);
-        });
 
-        /* ── Active nav link ── */
-        const sections = document.querySelectorAll('section[id], div[id="games-outer"]');
-        const navLinks = document.querySelectorAll('.nav-links a[data-section]');
 
-        const navObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              navLinks.forEach(a => a.classList.remove('active'));
-              const link = document.querySelector(`.nav-links a[data-section="${entry.target.id}"]`);
-              if (link) link.classList.add('active');
-            }
-          });
-        }, { rootMargin: '-40% 0px -50% 0px' });
+  <!-- ── LIGHTBOX ── -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Media preview">
+    <div class="lightbox-inner">
+      <img id="lightbox-img" src="" alt="">
+      <video id="lightbox-video" controls
+        style="display:none;max-width:100%;max-height:calc(88vh - 70px);border-radius:var(--r-lg);border:1px solid var(--border2);box-shadow:0 32px 80px rgba(0,0,0,0.7);"></video>
+      <div class="lightbox-footer">
+        <span id="lightbox-caption"></span>
+        <button id="lightbox-close">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <path d="M1 1l9 9M10 1L1 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+          Minimize
+        </button>
+      </div>
+    </div>
+  </div>
 
-        sections.forEach(s => navObserver.observe(s));
+  <script>
+    /* ── Scroll reveal ── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
-        /* ── Hamburger ── */
-        const toggle = document.getElementById('nav-toggle');
-        const drawer = document.getElementById('nav-drawer');
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i % 5) * 0.07 + 's';
+      observer.observe(el);
+    });
 
-        toggle.addEventListener('click', () => {
-          const open = drawer.classList.toggle('open');
-          toggle.setAttribute('aria-expanded', open);
-          // Animate bars
-          const bars = toggle.querySelectorAll('span');
-          if (open) {
-            bars[0].style.transform = 'translateY(6.5px) rotate(45deg)';
-            bars[1].style.opacity = '0';
-            bars[2].style.transform = 'translateY(-6.5px) rotate(-45deg)';
-          } else {
-            bars[0].style.transform = '';
-            bars[1].style.opacity = '';
-            bars[2].style.transform = '';
-          }
-        });
+    /* ── Snapshot lightbox ── */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxVid = document.getElementById('lightbox-video');
+    const lightboxCap = document.getElementById('lightbox-caption');
+    const lightboxClose = document.getElementById('lightbox-close');
 
-        // Close drawer on link click
-        document.querySelectorAll('.drawer-link').forEach(a => {
-          a.addEventListener('click', () => {
-            drawer.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
-            toggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-          });
-        });
+    function openLightbox(item) {
+      const isVideo = item.dataset.type === 'video';
+      const caption = item.dataset.caption || '';
+      lightboxCap.textContent = caption;
 
-        /* ── Form: open mailto on submit ── */
-        document.getElementById('form-submit').addEventListener('click', function () {
-          const name = document.getElementById('f-name').value.trim();
-          const email = document.getElementById('f-email').value.trim();
-          const msg = document.getElementById('f-msg').value.trim();
+      if (isVideo) {
+        const videoEl = item.querySelector('video');
+        const src = videoEl ? videoEl.querySelector('source')?.src || videoEl.src : '';
+        lightboxImg.style.display = 'none';
+        lightboxVid.style.display = 'block';
+        lightboxVid.src = src;
+        lightboxVid.play();
+      } else {
+        const img = item.querySelector('img');
+        lightboxVid.style.display = 'none';
+        lightboxImg.style.display = 'block';
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+      }
 
-          if (!name || !email || !msg) {
-            this.textContent = 'Please fill all fields';
-            this.style.background = '#333';
-            this.style.color = 'var(--text2)';
-            setTimeout(() => {
-              this.textContent = 'Send Message →';
-              this.style.background = '';
-              this.style.color = '';
-            }, 2500);
-            return;
-          }
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
 
-          const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
-          const body = encodeURIComponent(`Hi Bryan,\n\n${msg}\n\n— ${name}\n${email}`);
-          window.location.href = `mailto:brys463@gmail.com?subject=${subject}&body=${body}`;
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        lightboxImg.src = '';
+        lightboxVid.pause();
+        lightboxVid.src = '';
+      }, 300);
+    }
 
-          this.textContent = 'Opening email client ✓';
-          this.style.background = '#2a5a0e';
-          this.style.color = '#d4f0a0';
-          setTimeout(() => {
-            this.textContent = 'Send Message →';
-            this.style.background = '';
-            this.style.color = '';
-          }, 3500);
-        });
-      </script>
+    document.querySelectorAll('.snapshot-item').forEach(item => {
+      item.addEventListener('click', () => openLightbox(item));
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+
+    /* ── Active nav link ── */
+    const sections = document.querySelectorAll('section[id], div[id="games-outer"]');
+    const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          const link = document.querySelector(`.nav-links a[data-section="${entry.target.id}"]`);
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -50% 0px' });
+
+    sections.forEach(s => navObserver.observe(s));
+
+    /* ── Hamburger ── */
+    const toggle = document.getElementById('nav-toggle');
+    const drawer = document.getElementById('nav-drawer');
+
+    toggle.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+      const bars = toggle.querySelectorAll('span');
+      if (open) {
+        bars[0].style.transform = 'translateY(6.5px) rotate(45deg)';
+        bars[1].style.opacity = '0';
+        bars[2].style.transform = 'translateY(-6.5px) rotate(-45deg)';
+      } else {
+        bars[0].style.transform = '';
+        bars[1].style.opacity = '';
+        bars[2].style.transform = '';
+      }
+    });
+
+    document.querySelectorAll('.drawer-link').forEach(a => {
+      a.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+      });
+    });
+
+    /* ── Form: open mailto on submit ── */
+    const formSubmitBtn = document.getElementById('form-submit');
+    if (formSubmitBtn) formSubmitBtn.addEventListener('click', function () {
+      const name = document.getElementById('f-name').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const msg = document.getElementById('f-msg').value.trim();
+
+      if (!name || !email || !msg) {
+        this.textContent = 'Please fill all fields';
+        this.style.background = '#333';
+        this.style.color = 'var(--text2)';
+        setTimeout(() => {
+          this.textContent = 'Send Message →';
+          this.style.background = '';
+          this.style.color = '';
+        }, 2500);
+        return;
+      }
+
+      const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+      const body = encodeURIComponent(`Hi Bryan,\n\n${msg}\n\n— ${name}\n${email}`);
+      window.location.href = `mailto:brys463@gmail.com?subject=${subject}&body=${body}`;
+
+      this.textContent = 'Opening email client ✓';
+      this.style.background = '#2a5a0e';
+      this.style.color = '#d4f0a0';
+      setTimeout(() => {
+        this.textContent = 'Send Message →';
+        this.style.background = '';
+        this.style.color = '';
+      }, 3500);
+    });
+  </script>
+
 </body>
 
 </html>
