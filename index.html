@@ -1,190 +1,1776 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bryan | Game Dev Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-  </head>
-  <body>
-    <div class="grid-overlay"></div>
-    <nav>
-      <div class="logo">BRYAN<span>.</span></div>
-      <ul class="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#portfolio">Games</a></li>
-        <li><a href=#snapshots> Snapshots</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
 
-    <header id="hero">
-      <div class="hero-content">
-        <div class="badge">Looking for Internship</div>
-        <h1>I Make Ideas Come to Life!</h1>
-        <p>Indie Game Developer | Unity Specialist | Level Designer</p>
-        <div class="hero-btns">
-          <a href="#portfolio" class="btn">View My Games</a>
-          <a href="#contact" class="btn secondary">Get In Touch</a>
-        </div>
-      </div>
-    </header>
-<section id="featured">
-  <div class="section-title">
-    <h2>Latest In Progress</h2>
-    <div class="underline"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bryan Peñaflor — Game Developer</title>
+  <meta name="description"
+    content="Indie game developer specializing in Unity, C#, and immersive simulation. Building disaster-awareness experiences rooted in Filipino culture.">
+  <meta property="og:title" content="Bryan Peñaflor — Game Developer">
+  <meta property="og:description" content="Indie game developer specializing in Unity, C#, and immersive simulation.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ─── TOKENS ─── */
+    :root {
+      --bg: #080809;
+      --bg2: #0e0e10;
+      --bg3: #141417;
+      --surface: #18181c;
+      --surface2: #1f1f24;
+      --accent: #c8f03c;
+      --accent2: #a8d424;
+      --accent-dim: rgba(200, 240, 60, 0.12);
+      --accent-border: rgba(200, 240, 60, 0.22);
+      --text: #edece6;
+      --text2: #9a9891;
+      --text3: #525050;
+      --border: rgba(255, 255, 255, 0.06);
+      --border2: rgba(255, 255, 255, 0.11);
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --r: 10px;
+      --r-lg: 18px;
+      --nav-h: 68px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Grain texture */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    /* ════════════════════════════════════════
+   NAV
+════════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      background: rgba(8, 8, 9, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--accent) !important;
+      color: #080809 !important;
+      padding: 8px 20px !important;
+      border-radius: 100px !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.06em !important;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s !important;
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent2) !important;
+      transform: scale(1.04) !important;
+      box-shadow: 0 0 20px rgba(200, 240, 60, 0.3) !important;
+    }
+
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* Mobile menu */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0;
+      right: 0;
+      background: rgba(8, 8, 9, 0.97);
+      backdrop-filter: blur(30px);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 56px 32px;
+      z-index: 499;
+      flex-direction: column;
+      gap: 20px;
+      transform: translateY(-12px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-drawer.open {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .nav-drawer a {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color 0.2s;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-drawer a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-drawer a:hover {
+      color: var(--accent);
+    }
+
+    /* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: calc(var(--nav-h) + 60px) 56px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle grid */
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200, 240, 60, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 240, 60, 0.025) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 80%);
+    }
+
+    /* Glows */
+    .hero-glow {
+      position: absolute;
+      top: -180px;
+      right: -150px;
+      width: 720px;
+      height: 720px;
+      background: radial-gradient(circle, rgba(200, 240, 60, 0.07) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-glow2 {
+      position: absolute;
+      bottom: -250px;
+      left: -80px;
+      width: 560px;
+      height: 560px;
+      background: radial-gradient(circle, rgba(90, 60, 200, 0.05) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    /* Badge */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 40px;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+      }
+    }
+
+    /* Title */
+    .hero-title {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(52px, 9vw, 118px);
+      line-height: 0.91;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 32px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .hero-title .ghost {
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(237, 236, 230, 0.2);
+    }
+
+    .hero-title .hi {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--text2);
+      font-weight: 300;
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 48px;
+      animation: fadeUp 0.7s 0.18s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.26s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #080809;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent2);
+      transform: scale(1.04);
+      box-shadow: 0 0 24px rgba(200, 240, 60, 0.28);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 13px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      border: 1px solid var(--border2);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text3);
+      background: var(--surface);
+    }
+
+    /* Stats */
+    .hero-stats {
+      display: flex;
+      gap: 52px;
+      margin-top: 80px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.7s 0.34s ease both;
+      flex-wrap: wrap;
+    }
+
+    .stat-num {
+      font-family: var(--font-head);
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .stat-num sup {
+      color: var(--accent);
+      font-size: 0.55em;
+      vertical-align: super;
+    }
+
+    .stat-label {
+      font-size: 11.5px;
+      color: var(--text3);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* Scroll hint */
+    .hero-scroll {
+      position: absolute;
+      bottom: 44px;
+      right: 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: var(--text3);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 52px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: 0.2;
+      }
+
+      50% {
+        opacity: 0.8;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ════════════════════════════════════════
+   SECTION COMMON
+════════════════════════════════════════ */
+    section {
+      padding: 108px 56px;
+      position: relative;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(30px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      color: var(--text);
+      line-height: 1.04;
+      margin-bottom: 56px;
+    }
+
+    /* ════════════════════════════════════════
+   FEATURED
+════════════════════════════════════════ */
+    #featured {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .featured-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .featured-img-wrap {
+      position: relative;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .featured-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .featured-img-wrap:hover img {
+      transform: scale(1.06);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      backdrop-filter: blur(8px);
+    }
+
+    .featured-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      background: var(--surface2);
+      color: var(--text2);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+    }
+
+    .featured-title {
+      font-family: var(--font-head);
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .featured-desc {
+      font-size: 15px;
+      color: var(--text2);
+      line-height: 1.8;
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    /* ════════════════════════════════════════
+   GAMES GRID
+════════════════════════════════════════ */
+    #games-outer {
+      padding: 108px 56px;
+      background: var(--bg);
+    }
+
+    #games-header {
+      max-width: 1100px;
+      margin: 0 auto 52px;
+    }
+
+    .games-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .game-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      position: relative;
+    }
+
+    .game-card:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-border);
+    }
+
+    .game-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .game-card-img-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .game-card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      background: var(--surface2);
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .game-card:hover .game-card-img {
+      transform: scale(1.06);
+    }
+
+    /* Overlay shimmer on hover */
+    .game-card-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(200, 240, 60, 0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .game-card:hover .game-card-img-wrap::after {
+      opacity: 1;
+    }
+
+    .game-card-type {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(8, 8, 9, 0.75);
+      backdrop-filter: blur(10px);
+      color: var(--text2);
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--border2);
+    }
+
+    .game-card-body {
+      padding: 20px 22px 22px;
+    }
+
+    .game-card-title {
+      font-family: var(--font-head);
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .game-card-desc {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.65;
+      margin-bottom: 16px;
+      font-weight: 300;
+    }
+
+    .game-card-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .stack-tag {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text3);
+      background: var(--bg2);
+      padding: 3px 9px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+    }
+
+    .game-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .game-card-link svg {
+      transition: transform 0.2s;
+    }
+
+    .game-card:hover .game-card-link svg {
+      transform: translate(2px, -2px);
+    }
+
+    /* ════════════════════════════════════════
+   SNAPSHOTS
+════════════════════════════════════════ */
+    #snapshots {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .snapshots-header {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .snapshots-grid {
+      max-width: 1100px;
+      margin: 40px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .snapshot-item {
+      position: relative;
+      border-radius: var(--r);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .snapshot-item:hover {
+      border-color: var(--accent-border);
+      transform: scale(1.01);
+    }
+
+    .snapshot-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .snapshot-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .snapshot-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8, 8, 9, 0.9) 0%, rgba(8, 8, 9, 0.2) 50%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.35s;
+      display: flex;
+      align-items: flex-end;
+      padding: 18px;
+    }
+
+    .snapshot-item:hover .snapshot-overlay {
+      opacity: 1;
+    }
+
+    .snapshot-caption {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    /* ════════════════════════════════════════
+   ABOUT
+════════════════════════════════════════ */
+    #about {
+      background: var(--bg);
+    }
+
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 17px;
+      color: var(--text2);
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 28px;
+    }
+
+    .about-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Skills — SVG icon chips */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 36px;
+    }
+
+    .skill-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text2);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      cursor: default;
+    }
+
+    .skill-item:hover {
+      border-color: var(--accent-border);
+      color: var(--text);
+      background: var(--surface2);
+    }
+
+    .skill-icon {
+      width: 30px;
+      height: 30px;
+      background: var(--accent-dim);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .skill-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    /* Info cards */
+    .about-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 26px 28px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .about-card:hover {
+      border-color: var(--border2);
+    }
+
+    .about-card-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 10px;
+    }
+
+    .about-card-value {
+      font-family: var(--font-head);
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .about-card-value.small {
+      font-size: 14px;
+      font-weight: 400;
+      font-family: var(--font-body);
+      color: var(--text2);
+      line-height: 1.7;
+      letter-spacing: 0;
+    }
+
+    .about-card-value.open {
+      color: var(--accent);
+    }
+
+    .looking-card {
+      background: linear-gradient(135deg, rgba(200, 240, 60, 0.07) 0%, rgba(200, 240, 60, 0.02) 100%);
+      border: 1px solid var(--accent-border);
+      border-radius: var(--r-lg);
+      padding: 26px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .looking-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(200, 240, 60, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .looking-title {
+      font-family: var(--font-head);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .looking-desc {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* ════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════ */
+    #contact {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-headline {
+      font-family: var(--font-head);
+      font-size: clamp(36px, 4.5vw, 60px);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 0.97;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .contact-headline span {
+      color: var(--accent);
+    }
+
+    .contact-sub {
+      font-size: 15px;
+      color: var(--text2);
+      line-height: 1.75;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      padding: 16px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      transition: border-color 0.2s, transform 0.2s, background 0.2s;
+      color: var(--text);
+    }
+
+    .contact-link:hover {
+      border-color: var(--border2);
+      transform: translateX(5px);
+      background: var(--surface2);
+    }
+
+    .contact-link-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-dim);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .contact-link-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+
+    .contact-link-value {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      margin-top: 2px;
+    }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--accent-border);
+      box-shadow: 0 0 0 3px rgba(200, 240, 60, 0.08);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--text3);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--accent);
+      color: #080809;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 15px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-top: 4px;
+    }
+
+    .form-submit:hover {
+      background: var(--accent2);
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(200, 240, 60, 0.25);
+    }
+
+    .form-submit:active {
+      transform: scale(0.99);
+    }
+
+    /* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+    footer {
+      padding: 28px 56px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--text3);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      nav {
+        padding: 0 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-drawer {
+        display: flex;
+        padding: 24px;
+      }
+
+      #hero {
+        padding: calc(var(--nav-h) + 40px) 24px 64px;
+      }
+
+      section {
+        padding: 72px 24px;
+      }
+
+      #games-outer {
+        padding: 72px 24px;
+      }
+
+      footer {
+        padding: 24px;
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .featured-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .games-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .snapshots-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .hero-stats {
+        gap: 32px;
+        margin-top: 56px;
+      }
+
+      .hero-scroll {
+        display: none;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .snapshots-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 46px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAV ── -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">Bryan<span>.</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#featured" data-section="featured">Work</a></li>
+      <li><a href="#games-outer" data-section="games-outer">Games</a></li>
+      <li><a href="#snapshots" data-section="snapshots">Process</a></li>
+      <li><a href="#about" data-section="about">About</a></li>
+      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#featured" class="drawer-link">Work</a>
+    <a href="#games-outer" class="drawer-link">Games</a>
+    <a href="#snapshots" class="drawer-link">Process</a>
+    <a href="#about" class="drawer-link">About</a>
+    <a href="#contact" class="drawer-link" style="color:var(--accent)">Hire Me →</a>
   </div>
 
-  <div class="featured-container">
-    <div class="featured-card">
-      <div class="featured-image">
-        <img src="images/Screenshot 2026-01-03 115924.png" alt="Featured Project">
-        <div class="status-tag">In Development</div>
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+
+    <div class="hero-inner">
+      <div class="hero-badge">Open to Game Development Job opportunities</div>
+      <h1 class="hero-title">
+        I Make<br>
+        <span class="ghost">Ideas</span><br>
+        <span class="hi">Come Alive.</span>
+      </h1>
+      <p class="hero-sub">
+        Indie game developer specializing in Unity, immersive simulation, and level design. Currently building
+        disaster-awareness experiences rooted in Filipino culture.
+      </p>
+      <div class="hero-actions">
+        <a href="#games-outer" class="btn-primary">
+          View My Games
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+        <a href="#contact" class="btn-secondary">Get In Touch</a>
       </div>
-      <div class="featured-info">
-        <h3>LISTO</h3>
-        <p>Currently building a 3D Typhoon Simulation serious game for disaster awareness </p>
-        <div class="tech-stack">Unity 3D • C# • Maya 3D </div>
+
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">4<sup>+</sup></div>
+          <div class="stat-label"> Personal/Team Games Finished</div>
+        </div>
+        <div>
+          <div class="stat-num">3<sup>+</sup></div>
+          <div class="stat-label">Years with Unity</div>
+        </div>
+        <div>
+          <div class="stat-num">3</div>
+          <div class="stat-label">Months with Godot</div>
+        </div>
+        <div>
+          <div class="stat-num">2D/3D</div>
+          <div class="stat-label">Development</div>
+        </div>
       </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ── FEATURED ── -->
+  <section id="featured">
+    <div class="featured-inner">
+      <div class="featured-img-wrap reveal">
+        <span class="featured-badge">Capstone Projectt</span>
+        <img src="https://bryanpenaflorgd.github.io/My-Portfolio-/images/Screenshot 2026-01-03 115924.png"
+          alt="LISTO — typhoon simulation game screenshot"
+          onerror="this.style.background='#252530';this.style.minHeight='260px';this.removeAttribute('src')">
+      </div>
+      <div class="featured-content reveal">
+        <div class="section-label">Featured Project</div>
+        <div class="featured-tags">
+          <span class="tag">Unity 3D</span>
+          <span class="tag">C#</span>
+          <span class="tag">Maya 3D</span>
+          <span class="tag">Simulation</span>
+          <span class="tag">Serious Game</span>
+        </div>
+        <h2 class="featured-title">LISTO</h2>
+        <p class="featured-desc">
+          A first-person 3D typhoon simulation serious game set in Camarines Sur. Built to raise disaster awareness and
+          preparedness through immersive gameplay — combining authentic Filipino environments with educational
+          mechanics.
+        </p>
+        <a href="#" class="btn-secondary" style="width:fit-content;cursor:default;opacity:0.7;">Coming Soon</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GAMES GRID ── -->
+  <div id="games-outer">
+    <div id="games-header">
+      <div class="section-label reveal">Selected Works</div>
+      <h2 class="section-title reveal">Games I've Built</h2>
+    </div>
+    <div class="games-grid">
+
+      <a href="https://bryanpgamedev.itch.io/shadowstep" target="_blank" rel="noopener" class="game-card reveal">
+        <div class="game-card-img-wrap">
+          <img class="game-card-img"
+            src="https://bryanpenaflorgd.github.io/My-Portfolio-/images/Shadowstep%20lighting.png" alt="ShadowStep"
+            onerror="this.style.minHeight='180px';this.style.background='#1e1e26';this.removeAttribute('src')">
+          <span class="game-card-type">3D Stealth</span>
+        </div>
+        <div class="game-card-body">
+          <h3 class="game-card-title">ShadowStep</h3>
+          <p class="game-card-desc">3D stealth and puzzle-solving with dynamic lighting and atmospheric tension.</p>
+          <div class="game-card-stack">
+            <span class="stack-tag">Unity 3D</span>
+            <span class="stack-tag">Maya</span>
+            <span class="stack-tag">C#</span>
+          </div>
+          <span class="game-card-link">
+            Play on itch.io
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M1.5 10.5l9-9M4 1.5h6.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://bryanpgamedev.itch.io/siklab" target="_blank" rel="noopener" class="game-card reveal">
+        <div class="game-card-img-wrap">
+          <img class="game-card-img" src="https://bryanpenaflorgd.github.io/My-Portfolio-/images/IMG_2779.PNG"
+            alt="Siklab"
+            onerror="this.style.minHeight='180px';this.style.background='#1e1e26';this.removeAttribute('src')">
+          <span class="game-card-type">2D Roguelike</span>
+        </div>
+        <div class="game-card-body">
+          <h3 class="game-card-title">Siklab</h3>
+          <p class="game-card-desc">2D side-scroller roguelike stealth game set in the mythological world of Ibalon.</p>
+          <div class="game-card-stack">
+            <span class="stack-tag">Unity 2D</span>
+            <span class="stack-tag">Maya</span>
+            <span class="stack-tag">C#</span>
+          </div>
+          <span class="game-card-link">
+            Play on itch.io
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M1.5 10.5l9-9M4 1.5h6.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <div class="game-card reveal" style="opacity:0.72;cursor:default;">
+        <div class="game-card-img-wrap">
+          <img class="game-card-img"
+            src="https://bryanpenaflorgd.github.io/My-Portfolio-/images/480698202_1145424950371042_2388871479277668898_n.jpg"
+            alt="Never Blink"
+            onerror="this.style.minHeight='180px';this.style.background='#1e1e26';this.removeAttribute('src')">
+          <span class="game-card-type">Horror / Puzzle</span>
+          <span
+            style="position:absolute;bottom:12px;left:12px;background:rgba(8,8,9,0.82);border:1px solid rgba(255,255,255,0.18);color:var(--text2);font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;backdrop-filter:blur(10px);">
+            Coming Soon</span>
+        </div>
+        <div class="game-card-body">
+          <h3 class="game-card-title">Never Blink</h3>
+          <p class="game-card-desc">Top-down 2D horror puzzle game built for browser play. Unsettling atmosphere, tight
+            mechanics.</p>
+          <div class="game-card-stack">
+            <span class="stack-tag">Unity 2D</span>
+            <span class="stack-tag">C#</span>
+          </div>
+          <span class="game-card-link" style="color:var(--text3);cursor:default;">
+            itch.io link coming soon
+          </span>
+        </div>
+      </div>
+
     </div>
   </div>
-</section>
-    <section id="portfolio">
-      <div class="section-title">
-        <h2>Selected Works</h2>
-        <div class="underline"></div>
-      </div>
 
-      <div class="filter-container">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="rpg">Simulation</button>
-        <button class="filter-btn" data-filter="action">Stealth</button>
-        <button class="filter-btn" data-filter="web">2D</button>
-      </div>
-
-      <div class="game-grid">
-        <div class="game-card" data-category="rpg">
-          <div class="card-image">
-            <img src="images/Screenshot 2026-01-03 115924.png" alt="LISTO Game" />
-          </div>
-          <div class="card-content">
-            <h3>LISTO</h3>
-            <p class="tech-stack">Unity 3D • C# • 3D Models</p>
-            <p>A First-person 3D Simulation Thriller about Typhoons in Camarines Sur.</p>
-            <a href="#" class="play-link"> In <i class="fas fa-gamepad"></i></a>
-          </div>
-        </div>
-
-        <div class="game-card" data-category="action">
-          <div class="card-image">
-            <img src="images/game icon.png" alt="ShadowStep Game" />
-          </div>
-          <div class="card-content">
-            <h3>ShadowStep</h3>
-            <p class="tech-stack">Unity 3D • Maya</p>
-            <p>3D Stealth and Puzzle-solving mechanics with dynamic lighting.</p>
-            <a href="https://bryanpgamedev.itch.io/shadowstep" class="play-link"> Download Game <i class="fas fa-gamepad"></i></a>
-          </div>
-        </div>
-        
-        <div class="game-card" data-category="action">
-          <div class="card-image">
-            <img src="images/IMG_2779.PNG" alt="Siklab Game" />
-          </div>
-          <div class="card-content">
-            <h3>Siklab</h3>
-            <p class="tech-stack">Unity 3D • Maya</p>
-            <p>2D Side-scroller roguelike stealth game set in the world of Ibalon</p>
-              <a href="https://bryanpgamedev.itch.io/siklab" class="play-link"> Download Game <i class="fas fa-gamepad"></i></a>
-          </div>
-        </div>
-
-        <div class="game-card" data-category="web">
-          <div class="card-image">
-            <img src="images/480698202_1145424950371042_2388871479277668898_n.jpg" alt="Never Blink Game" />
-          </div>
-          <div class="card-content">
-            <h3>Never Blink</h3>
-            <p class="tech-stack">Topdown 2D • Horror</p>
-            <p>A Topdown 2D Horror puzzle game built for browser play.</p>
-            <a href="#" class="play-link"> Download Game <i class="fas fa-gamepad"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id ="snapshots">
-      <div class="section-title">
-        <h2> Snapshots 
-          <div class="underline">
-            <p>A glimpse at some of my works</p>
-          </div>
-        </h2>
-      </div>
-
-      <div class="snapshot-container">
-    <div class="snapshot-item">
-      <img src="images/Siklab Level Design.png" alt="Siklab Level Design">
-      <div class="snapshot-overlay">Level Layout - Siklab</div>
+  <!-- ── SNAPSHOTS ── -->
+  <section id="snapshots">
+    <div class="snapshots-header">
+      <div class="section-label reveal">Process</div>
+      <h2 class="section-title reveal" style="margin-bottom:0">Behind the Work</h2>
     </div>
-    <div class="snapshot-item">
-      <img src="images/Shadowstep lighting.png" alt="ShadowStep Lighting">
-      <div class="snapshot-overlay">Dynamic Lighting - ShadowStep</div>
+    <div class="snapshots-grid">
+      <div class="snapshot-item reveal">
+        <img src="https://bryanpenaflorgd.github.io/My-Portfolio-/images/Siklab Level Design.png"
+          alt="Siklab Level Layout" loading="lazy">
+        <div class="snapshot-overlay"><span class="snapshot-caption">Level Layout — Siklab</span></div>
+      </div>
+      <div class="snapshot-item reveal">
+        <img src="https://bryanpenaflorgd.github.io/My-Portfolio-/images/Shadowstep lighting.png"
+          alt="ShadowStep Dynamic Lighting" loading="lazy">
+        <div class="snapshot-overlay"><span class="snapshot-caption">Dynamic Lighting — ShadowStep</span></div>
+      </div>
+      <div class="snapshot-item reveal">
+        <img src="https://bryanpenaflorgd.github.io/My-Portfolio-/images/Listo environment.png" alt="LISTO Environment"
+          loading="lazy">
+        <div class="snapshot-overlay"><span class="snapshot-caption">Environment Design — LISTO</span></div>
+      </div>
     </div>
-    <div class="snapshot-item">
-      <img src="images/Listo environment.png" alt="LISTO Environment">
-      <div class="snapshot-overlay">Environment - LISTO</div>
-    </div>
-    </div>
+  </section>
 
-    </section>
-
-    <section id="about">
-      <div class="about-container">
-        <div class="about-text">
-          <h2>About Me</h2>
-          <p>
-            I’m a game developer specialized in Unity and C#, passionate about building immersive gameplay systems and mechanics-driven experiences.
-          </p>
-
-          <h3>Technical Skills</h3>
-         <div class="skill-item">
-  <div class="skill-info"><span>Unity</span></div>
-  <div class="progress-bar"><div class="progress" style="width: 100%"></div></div>
-</div>
-            <div class="skill-item">
-  <div class="skill-info"><span>C#</span></div>
-  <div class="progress-bar"><div class="progress" style="width: 100%"></div></div>
-</div>
-            <div class="skill-item">
-  <div class="skill-info"><span>3D Modeling (Maya)</span></div>
-  <div class="progress-bar"><div class="progress" style="width: 100%"></div></div>
-</div>
-            <div class="skill-item">
-  <div class="skill-info"><span>Github</span></div>
-  <div class="progress-bar"><div class="progress" style="width: 100%"></div></div>
-</div>
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="about-inner">
+      <div>
+        <div class="section-label reveal">Who I Am</div>
+        <h2 class="section-title reveal" style="margin-bottom:28px;">Game Developer,<br> Creator.</h2>
+        <p class="about-text reveal">
+          I'm <strong>Samuel Bryan Peñaflor</strong>, an indie game developer from Camarines Sur with a focus on
+          <strong>Unity, Godot, and immersive game systems</strong>. I build and collaborate to make experiences that go
+          beyond entertainment — from stealth games to disaster-preparedness simulations.
+        </p>
+        <p class="about-text reveal">
+          Currently finishing my degree and actively <strong>in an internship</strong> where I contribute to a real
+          production pipeline, learn from experienced developers, and keep pushing to improve my skills in the field.
+        </p>
+        <div class="skills-grid reveal">
+          <div class="skill-item">
+            <div class="skill-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <path d="M8 21h8M12 17v4" />
+              </svg>
+            </div>
+            Unity 3D
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round">
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
+              </svg>
+            </div>
+            C#
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            Maya 3D
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M8.5 8.5c-.6-.6-1-1.4-1-2.5 0-2.2 2-4 4.5-4s4.5 1.8 4.5 4c0 1.1-.4 1.9-1 2.5" />
+                <path d="M8.5 15.5c-.6.6-1 1.4-1 2.5 0 2.2 2 4 4.5 4s4.5-1.8 4.5-4c0-1.1-.4-1.9-1-2.5" />
+                <path d="M15.5 8.5c.6-.6 1.4-1 2.5-1 2.2 0 4 2 4 4.5s-1.8 4.5-4 4.5c-1.1 0-1.9-.4-2.5-1" />
+                <path d="M8.5 15.5c-.6.6-2.5 1-3.5 1-2.2 0-4-2-4-4.5S2.8 7 5 7c1 0 2.9.4 3.5 1" />
+              </svg>
+            </div>
+            GitHub
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round">
+                <polygon points="3 11 22 2 13 21 11 13 3 11" />
+              </svg>
+            </div>
+            Level Design
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round">
+                <rect x="6" y="2" width="12" height="8" rx="2" />
+                <path d="M2 14h20M6 14v6M18 14v6M2 20h20" />
+              </svg>
+            </div>
+            Game Systems
           </div>
         </div>
       </div>
-    </section>
 
-    <footer id="contact">
-      <h2>Let's Create Together!</h2>
-      <div class="socials">
-        <a href="https://x.com/PeaflorBryan" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.linkedin.com/in/samuel-bryan-peñaflor-1550b3205" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://bryanpgamedev.itch.io/" target="_blank"><i class="fab fa-itch-io"></i></a>
-        <a href="https://github.com/BryanPenaflorGD" target="_blank"><i class="fab fa-github"></i></a>
+      <div class="reveal">
+        <div class="about-card">
+          <div class="about-card-label">Based in</div>
+          <div class="about-card-value">Camarines Sur, PH</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label">Availability</div>
+          <div class="about-card-value open">In an Internship</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label">Focus areas</div>
+          <div class="about-card-value small">3D simulation, Serious Games, Casual Games, Level Design, Game Mechanic
+            Prototyping</div>
+        </div>
+        <div class="looking-card">
+          <div class="looking-title">What I'm Looking For</div>
+          <p class="looking-desc">A spot at a studio where I can contribute as a junior developer, deepen my skills in
+            the overall game development pipeline, and work on shippable products that matter.</p>
+        </div>
       </div>
-      <p>&copy; 2025 Samuel Bryan I. Peñaflor. All rights reserved.</p>
-    </footer>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
-  </body>
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div>
+        <div class="section-label reveal">Get In Touch</div>
+        <h2 class="contact-headline reveal">Let's Build<br><span>Something</span><br>Together.</h2>
+        <p class="contact-sub reveal">Whether you're a studio looking for a motivated junior developer or a fellow dev
+          wanting to collaborate — I'd love to hear from you.</p>
+
+        <div class="contact-links reveal">
+          <a href="mailto:brys463@@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            <div>
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-value">brys463@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://bryanpgamedev.itch.io/" target="_blank" rel="noopener" class="contact-link">
+            <div class="contact-link-icon">🎮</div>
+            <div>
+              <div class="contact-link-label">itch.io</div>
+              <div class="contact-link-value">bryanpgamedev.itch.io</div>
+            </div>
+          </a>
+          <a href="https://github.com/bryanpenaflorgd" target="_blank" rel="noopener" class="contact-link">
+            <div class="contact-link-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--accent)">
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-link-label">GitHub</div>
+              <div class="contact-link-value">github.com/bryanpenaflorgd</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/samuel-bryan-pe%C3%B1aflor-1550b3205/" target="_blank" rel="noopener"
+            class="contact-link">
+            <div class="contact-link-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-link-label">LinkedIn</div>
+              <div class="contact-link-value">linkedin.com/in/bryanpenaflor</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <script>
+        /* ── Scroll reveal ── */
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+        document.querySelectorAll('.reveal').forEach((el, i) => {
+          el.style.transitionDelay = (i % 5) * 0.07 + 's';
+          observer.observe(el);
+        });
+
+        /* ── Active nav link ── */
+        const sections = document.querySelectorAll('section[id], div[id="games-outer"]');
+        const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+
+        const navObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navLinks.forEach(a => a.classList.remove('active'));
+              const link = document.querySelector(`.nav-links a[data-section="${entry.target.id}"]`);
+              if (link) link.classList.add('active');
+            }
+          });
+        }, { rootMargin: '-40% 0px -50% 0px' });
+
+        sections.forEach(s => navObserver.observe(s));
+
+        /* ── Hamburger ── */
+        const toggle = document.getElementById('nav-toggle');
+        const drawer = document.getElementById('nav-drawer');
+
+        toggle.addEventListener('click', () => {
+          const open = drawer.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open);
+          // Animate bars
+          const bars = toggle.querySelectorAll('span');
+          if (open) {
+            bars[0].style.transform = 'translateY(6.5px) rotate(45deg)';
+            bars[1].style.opacity = '0';
+            bars[2].style.transform = 'translateY(-6.5px) rotate(-45deg)';
+          } else {
+            bars[0].style.transform = '';
+            bars[1].style.opacity = '';
+            bars[2].style.transform = '';
+          }
+        });
+
+        // Close drawer on link click
+        document.querySelectorAll('.drawer-link').forEach(a => {
+          a.addEventListener('click', () => {
+            drawer.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+          });
+        });
+
+        /* ── Form: open mailto on submit ── */
+        document.getElementById('form-submit').addEventListener('click', function () {
+          const name = document.getElementById('f-name').value.trim();
+          const email = document.getElementById('f-email').value.trim();
+          const msg = document.getElementById('f-msg').value.trim();
+
+          if (!name || !email || !msg) {
+            this.textContent = 'Please fill all fields';
+            this.style.background = '#333';
+            this.style.color = 'var(--text2)';
+            setTimeout(() => {
+              this.textContent = 'Send Message →';
+              this.style.background = '';
+              this.style.color = '';
+            }, 2500);
+            return;
+          }
+
+          const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+          const body = encodeURIComponent(`Hi Bryan,\n\n${msg}\n\n— ${name}\n${email}`);
+          window.location.href = `mailto:brys463@gmail.com?subject=${subject}&body=${body}`;
+
+          this.textContent = 'Opening email client ✓';
+          this.style.background = '#2a5a0e';
+          this.style.color = '#d4f0a0';
+          setTimeout(() => {
+            this.textContent = 'Send Message →';
+            this.style.background = '';
+            this.style.color = '';
+          }, 3500);
+        });
+      </script>
+</body>
+
 </html>
